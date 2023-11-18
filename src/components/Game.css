@@ -1,0 +1,23 @@
+#root {
+  display: flex;
+  position: relative;
+  align-items: end;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(
+    90deg,
+    rgb(117, 7, 151) 0%,
+    rgba(24, 161, 203, 1) 35%,
+    rgba(24, 161, 203, 1) 65%,
+    rgba(117, 7, 151) 100%
+  );
+  width: 100vw;
+  height: 90vh;
+}
+
+.lane {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}

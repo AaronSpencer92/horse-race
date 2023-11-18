@@ -1,0 +1,26 @@
+.empty-slot {
+  position: relative;
+}
+
+.dot {
+  width: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.horse {
+  width: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.slots {
+  position: relative;
+  display: grid;
+  grid-template-columns: 60px;
+  grid-template-rows: repeat(13, 60px);
+}
