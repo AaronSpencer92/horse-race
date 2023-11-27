@@ -21,3 +21,19 @@
   flex-direction: row;
   flex-grow: 1;
 }
+
+.flex-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.dice-section {
+  display: flex;
+  justify-content: center;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

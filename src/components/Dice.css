@@ -1,0 +1,30 @@
+
+
+.dice {
+  width: 100px;
+  height: 100px;
+}
+
+.img-1{
+  background-image: url('../../public/Die_face_1b.svg');
+}
+
+.img-2{
+    background-image: url('../../public/Die_face_2b.svg');
+}
+
+.img-3{
+  background-image: url('../../public/Die_face_3b.svg');
+}
+
+.img-4{
+  background-image: url('../../public/Die_face_4b.svg');
+}
+
+.img-5{
+  background-image: url('../../public/Die_face_5b.svg');
+}
+
+.img-6{
+  background-image: url('../../public/Die_face_6b.svg');
+}
