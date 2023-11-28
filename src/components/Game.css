@@ -29,7 +29,11 @@
 
 .dice-section {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 36px;
+  color: purple;
+  gap: 50px;
 }
 
 .section {
