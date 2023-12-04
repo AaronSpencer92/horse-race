@@ -1,0 +1,303 @@
+;
+; MF40SCN.INF  -- Windows Setup File for the MF3010 (Windows XP,Vista,7,8(64-bit))
+; Copyright CANON INC. 2013 All Rights Reserved
+;
+; InfID: {16F243D2-8E47-4348-9A68-5E30BFEE86C0}
+;
+; Last Modified: 05-Feb-2013
+
+[Version]
+Signature="$Windows NT$"
+Class=Image
+ClassGUID={6bdd1fc6-810f-11d0-bec7-08002be2092f}
+
+;  The above GUID is the class GUID for all scanners and MUST NOT change
+Provider=%Msft%
+CatalogFile.NTamd64=MF40SCN.CAT
+DriverVer=05/21/2013, 11.3.0.0
+
+[DestinationDirs]
+DefaultDestDir=11
+CNCDsFiles=10,"twain_32\"%CNCRFN%
+CNCDsCommonFilesXP=24,"CanonMF\"%CNCRFN%
+CNCDsCommonFiles=16422,"Canon\CanonMF\"%CNCRFN%
+CNCMediaFiles=10,media
+ColorFiles.NT=11,spool\drivers\Color
+
+[ControlFlags]
+;ExcludeFromSelect=*
+
+[Manufacturer]
+%Mfg%=Models,NTamd64,NTamd64.6.0
+
+[Models.NTamd64]
+%LPTENUM\CNC.DeviceDesc%=CNCInstall,USB\VID_04A9&PID_2759&MI_00
+
+[Models.NTamd64.6.0]
+%LPTENUM\CNC.DeviceDesc%=CNCInstall_VISTA,USB\VID_04A9&PID_2759&MI_00
+
+;........................................ WinXP(64-bit) section
+[CNCInstall.NTamd64]
+Include=sti.inf
+Needs=STI.USBSection
+SubClass=StillImage
+DeviceType=1
+DeviceSubType=0x1
+DeviceData=CNCDeviceData
+AddReg=CNCAddreg,CNCAddreg_XP,CNCAddreg.USB,CNCUSDAddreg
+CopyFiles=WiaFiles,CNCDsFiles,CNCDsCommonFilesXP,ColorFiles.NT,MPScanLLD,CNCMediaFiles
+ICMProfiles="sRGB Color Space Profile.icm"
+Capabilities=0x10
+DriverVer=05/21/2013, 11.3.0.0
+FriendlyName=%CNC.FriendlyName%
+
+[CNCInstall.NTamd64.Services]
+Include=sti.inf
+Needs=STI.USBSection.Services
+
+;........................................ WinVista(64-bit) section
+[CNCInstall_VISTA.NTamd64]
+Include=sti.inf
+Needs=STI.USBSection
+SubClass=StillImage
+DeviceType=1
+DeviceSubType=0x1
+DeviceData=CNCDeviceData_VISTA
+AddReg=CNCAddreg,CNCAddreg_VISTA,CNCAddreg.USB,CNCUSDAddreg,CNCUSDAddreg_VISTA
+CopyFiles=Wia2Files,CNCDsFiles,CNCDsCommonFiles,ColorFiles.NT,MPScanLLD,CNCMediaFiles
+ICMProfiles="sRGB Color Space Profile.icm"
+Capabilities=0x10
+DriverVer=05/21/2013, 11.3.0.0
+FriendlyName=%CNC.FriendlyName%
+
+[CNCInstall_VISTA.NTamd64.Services]
+Include=sti.inf
+Needs=STI.USBSection.Services
+
+;.......................................... Common Section
+[ColorFiles.NT]
+CNZ005.ICC
+CNFR12.ICC
+
+[CNCDeviceData]
+TwainDS=%CNC.TwainDS%
+SpecialInfo=%CNC.SPInfo%
+DeviceKey=%CNCRFN%
+InstallDirectory="CanonMF\%CNCRFN%\"
+KeyNamePath=%KEYNAME%
+DefaultKeyNamePath=%DEFAULTKEYNAME%
+
+[CNCDeviceData_VISTA]
+TwainDS=%CNC.TwainDS%
+SpecialInfo=%CNC.SPInfo%
+DeviceKey=%CNCRFN%
+InstallDirectory="Program Files\Canon\CanonMF\%CNCRFN%\"
+KeyNamePath=%KEYNAME%
+DefaultKeyNamePath=%DEFAULTKEYNAME%
+UI Class ID={B3AA080E-E61F-4aeb-AB06-7AF1CB68F9A3}
+;The above GUID reused from sample MUST change for each Model.
+
+[CNCAddreg]
+HKLM,"%SGDKEY%","DeviceName",,%CNC.MDL%
+HKLM,"%SGDKEY%","SeriesName",,%CNC.SRS%
+HKLM,"%SGDKEY%","Manufacturer",,"Canon Inc."
+HKLM,"%SGDKEY%","ProductFamily",,"TWAIN Scanners"
+HKLM,"%SGDKEY%","ProductName",,%CNC.MDL%
+HKLM,"%SGDKEY%","InstallDirectory",,"%10%\TWAIN_32\%CNCRFN%\"
+HKLM,"%SGDKEY%","DeviceDriver",,"SCANINTF.DLL"
+HKLM,"%SGDKEY%","ProductId",,"MF3010          "
+HKLM,"%SGDKEY%","DataSourcePath",,"%10%\TWAIN_32\%CNCRFN%\cisds.ds"
+HKLM,"%SGDKEY%","TextEnhance",0x00010001,0
+HKLM,"%SGDKEY%","HiDefinitionMode",0x00010001,0
+HKLM,"%SGDKEY%","AutoPreview",0x00010001,0
+HKLM,"%SGDKEY%","AutoClose",0x00010001,0
+HKLM,"%SGDKEY%","SavePreview",0x00010001,1
+HKLM,"%SGDKEY%","DriverDate",,"02 2013"
+HKLM,"%SGDKEY%","DriverVersion",,"11.3.0.0.mf13a"
+HKLM,"%SGDKEY%","ColorGear",,%CNC.ColorGear%
+HKLM,"%SGDKEY%","ColorMatch Platen",,"CNFR12.ICC"
+HKLM,"%SGDKEY%","SGIPPDEF",,"CNCFR12.DAT"
+HKLM,"%SGDKEY%","Descreen",0x00010001,0
+HKLM,"%SGDKEY%","Unsharp",0x00010001,3
+HKLM,"%SGDKEY%","MultiLimitThreshold",0x00010001,180
+HKLM,"%SGDKEY%","MultiJackUp",0x00010001,9
+HKLM,"%SGDKEY%","MultiTrimJackUp",0x00010001,20
+HKLM,"%SGDKEY%","CardPhotoDistThr",0x00010001,30
+HKLM,"%SGDKEY%","PhotoTrimThr",0x00010001,210
+HKLM,"%SGDKEY%","PhotoRThr",0x00010001,210
+HKLM,"%SGDKEY%","PhotoGThr",0x00010001,210
+HKLM,"%SGDKEY%","PhotoBThr",0x00010001,210
+HKLM,"%SGDKEY%","CardTrimThr",0x00010001,30
+HKLM,"%SGDKEY%","CardRThr",0x00010001,30
+HKLM,"%SGDKEY%","CardGThr",0x00010001,30
+HKLM,"%SGDKEY%","CardBThr",0x00010001,30
+HKLM,"%SGDKEY%","ParWhiteBlackEth",0x00010001,5
+HKLM,"%SGDKEY%","ParWhiteBlackEthDG",0x00010001,5
+HKLM,"%SGDKEY%","ParWhiteBlackSth",0x00010001,35
+HKLM,"%SGDKEY%","ParWhiteBlackVth",0x00010001,10
+HKLM,"%SGDKEY%","ParLabelingHth",0x00010001,30
+HKLM,"%SGDKEY%","ParLabelingLeft",0x00010001,1
+HKLM,"%SGDKEY%","ParLabelingTop",0x00010001,1
+HKLM,"%SGDKEY%","ParLabelingRight",0x00010001,1
+HKLM,"%SGDKEY%","ParLabelingBottom",0x00010001,1
+HKLM,"%SGDKEY%","DT_Left",,"10"
+HKLM,"%SGDKEY%","DT_Top",,"0"
+HKLM,"%SGDKEY%","DT_Width"	,,"1.5"
+HKLM,"%SGDKEY%","DT_Length",,"4.5"
+HKLM,"%SGDKEY%","DT_Border_1",,"2.5"
+HKLM,"%SGDKEY%","DT_Border_2",,"3.5"
+HKLM,"%SGDKEY%","DT_BkTh",,"18"
+HKLM,"%SGDKEY%","DT_MinWhThr",,"15"
+HKLM,"%SGDKEY%","DT_MaxWhThr",,"45"
+HKLM,"%SGDKEY%","ButtonNum",0x00010001,0
+HKLM,"%STIKEY%","MF3010",0x00010001,1
+
+[CNCAddreg_XP]
+HKLM,"%SGDKEY%","CommonModuleDirectory",,"%24%\CanonMF\%CNCRFN%\"
+
+[CNCAddreg_VISTA]
+HKLM,"%SGDKEY%","CommonModuleDirectory",,"%16422%\Canon\CanonMF\%CNCRFN%\"
+
+[CNCAddreg.USB]
+HKLM,"%SGDKEY%","AvailableDriver",0x00010001,1
+
+[CNCUSDAddreg]
+HKLM,"%WIASGDKEY%","ColorMatch",0x00010001,1
+HKLM,"%WIASGDKEY%","ColorGear",,"%CNC.ColorGear%"
+HKLM,"%WIASGDKEY%","TextEnhance",0x00010001,0
+HKLM,"%WIASGDKEY%","Descreen",0x00010001,0
+HKLM,"%WIASGDKEY%","UnsharpMask",0x00010001,0
+HKLM,"%WIASGDKEY%","HiDefinitionMode",0x00010001,0
+HKLM,"%WIASGDKEY%","ProductId",,"MF3010          "
+HKLM,"%WIASGDKEY%","ButtonNum",0x00010001,0
+HKLM,"%WIASGDKEY%","DspGamma",0x00010001,1
+HKLM,"%WIASTIKEY%","MF3010",0x00010001,1
+HKR,,USDClass,,"{774FC8D9-A570-4461-8DF3-E8AEAD650396}"
+HKCR,CLSID\{774FC8D9-A570-4461-8DF3-E8AEAD650396},,,"Canon USD"
+HKCR,CLSID\{774FC8D9-A570-4461-8DF3-E8AEAD650396}\InProcServer32,,,%11%\CNCC3010.DLL
+HKCR,CLSID\{774FC8D9-A570-4461-8DF3-E8AEAD650396}\InProcServer32,ThreadingModel,,"Both"
+;  The above GUID is specific to MF3010 and MUST change for a different model.
+
+[CNCUSDAddreg_VISTA]
+HKCR,CLSID\{B3AA080E-E61F-4aeb-AB06-7AF1CB68F9A3},,,"WIA Driver UI Extension"
+HKCR,CLSID\{B3AA080E-E61F-4aeb-AB06-7AF1CB68F9A3}\shellex\ImageProcessingFilter\{59A18CA7-3320-4b9f-A6D1-D31306CC8C74}
+;  The above GUID is specific to MF3010 and MUST change for a different model.
+
+HKCR,CLSID\{59A18CA7-3320-4b9f-A6D1-D31306CC8C74},,,"Canon Image Processing Filter"
+HKCR,CLSID\{59A18CA7-3320-4b9f-A6D1-D31306CC8C74}\InProcServer32,,,%11%\CNCE3010.dll
+HKCR,CLSID\{59A18CA7-3320-4b9f-A6D1-D31306CC8C74}\InProcServer32,ThreadingModel,,"Both"
+;  The above GUID is specific to MF3010 and MUST change for a different model.
+
+[WiaFiles]
+CNCC3010.DLL
+CNCI3010.DLL
+CNCL3010.DLL
+
+[Wia2Files]
+CNCC3010.DLL
+CNCI3010.DLL
+CNCL3010.DLL
+CNCE3010.DLL
+
+[CNCDsFiles]
+CISDS.DS
+SGUI.DLL
+SGUI_RES.DLL
+IOP.DLL
+ITLIB32.DLL
+SCANINTF.DLL
+TPM.DLL
+CNCFR12.DAT
+MC2.TXT
+JDA_CIMG.DLL
+NBS4MB.DLL
+NBSCOR4M.DLL
+RMSLANTC.DLL
+RSTCOL.DLL
+
+[CNCDsCommonFilesXP]
+WIARES.DLL
+SGCFLTR.dll
+SGCFLTR6.dll
+
+[CNCDsCommonFiles]
+WIARES.DLL
+SGCFLTR.dll
+SGCFLTR6.dll
+
+[MPScanLLD]
+CNCMFP40.INI,,,0x20
+CNCLSI40.DLL,,,0x20
+CNCLSD40.DLL,,,0x20
+CNCLSC40.DLL,,,0x20
+CNCLST40.DLL,,,0x20
+CNCLSU40.DLL,,,0x20
+
+[CNCMediaFiles]
+CSSAMP1.MID
+
+;-------------------------------Source Index
+[SourceDisksFiles]
+CNZ005.ICC=1
+ITLIB32.DLL=1
+JDA_CIMG.DLL=1
+NBS4MB.DLL=1
+NBSCOR4M.DLL=1
+RMSLANTC.DLL=1
+RSTCOL.DLL=1
+
+CISDS.DS=1
+SGUI.DLL=1
+IOP.DLL=1
+SCANINTF.DLL=1
+TPM.DLL=1
+SGCFLTR.dll=1
+SGCFLTR6.dll=1
+
+SGUI_RES.DLL=1
+WIARES.DLL=1
+
+CSSAMP1.MID=1
+
+CNCFR12.DAT=1
+CNFR12.ICC=1
+
+MC2.TXT=1
+
+CNCC3010.DLL=1
+CNCI3010.DLL=1
+CNCL3010.DLL=1
+CNCE3010.DLL=1
+
+CNCMFP40.INI=1
+CNCLSI40.DLL=1
+CNCLSD40.DLL=1
+CNCLSC40.DLL=1
+CNCLST40.DLL=1
+CNCLSU40.DLL=1
+
+[SourceDisksNames]
+1=%D1%,scan.cab,
+
+;-------------------------------String Aliases
+[Strings]
+Msft="Canon"
+Mfg="Canon"
+SGDKEY="Software\Wow6432Node\Canon\SateraMFP1\ScanGear\11.3\Devices\MF3010"
+STIKEY="Software\Wow6432Node\Canon\SateraMFP1\ScanGear\STI"
+DEFAULTKEYNAME="Software\Wow6432Node\Canon\SateraMFP1\Toolbox Ver4.9\Devices\"
+KEYNAME="\Software\Canon\MFToolbox\"
+WIASGDKEY="Software\Canon\SateraMFP1\WIA\3.0\Devices\MF3010"
+WIASTIKEY="Software\Canon\SateraMFP1\WIA\STI"
+D1="Canon MF3010 Setup Disk"
+LPTENUM\CNC.DeviceDesc="Canon MF3010"
+ButtonApp        = "MF Toolbox Ver4.9"
+CNCRFN           = "MF3010"
+CNC.MDL          = "Canon MF3010"
+CNC.SRS          = "Canon MF3010"
+CNC.DeviceDesc   = "Canon MF3010"
+CNC.SPInfo       = "Canon MF3010 Scanner"
+CNC.TwainDS      = "Canon MF3010"
+CNC.ColorGear    = "FR12"
+CNC.FriendlyName     = "WIA Canon MF3010"
+
